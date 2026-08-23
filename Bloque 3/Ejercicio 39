@@ -1,0 +1,50 @@
+"""Programa para calcular la diferencia entre dos fechas."""
+
+from datetime import datetime
+
+
+def convertir_fecha(fecha_texto):
+    """Convierte una fecha escrita por el usuario en un objeto datetime."""
+    formato_fecha = "%d/%m/%Y"
+    return datetime.strptime(fecha_texto, formato_fecha)
+
+
+def calcular_diferencia(fecha_inicial, fecha_final):
+    """Calcula la diferencia absoluta entre dos fechas."""
+    diferencia = abs(fecha_final - fecha_inicial)
+    return diferencia.days
+
+
+def main():
+    """Solicita las fechas y muestra la diferencia en días."""
+    print("CALCULADORA DE FECHAS")
+    print("Las fechas deben ingresarse con el formato día/mes/año.")
+    print("Ejemplo: 12/08/2026")
+
+    try:
+        primera_entrada = input("\nIngrese la primera fecha: ")
+        segunda_entrada = input("Ingrese la segunda fecha: ")
+
+        primera_fecha = convertir_fecha(primera_entrada)
+        segunda_fecha = convertir_fecha(segunda_entrada)
+
+        cantidad_dias = calcular_diferencia(
+            primera_fecha,
+            segunda_fecha,
+        )
+
+        print(
+            "\nLa diferencia entre las dos fechas es de",
+            cantidad_dias,
+            "días.",
+        )
+
+    except ValueError:
+        print(
+            "\nError: la fecha ingresada no existe "
+            "o no tiene el formato correcto."
+        )
+
+
+if __name__ == "__main__":
+    main()
